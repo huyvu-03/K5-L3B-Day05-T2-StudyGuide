@@ -46,6 +46,32 @@
 | "Buổi 5 hồi quy tuyến tính là gì ạ? Giảng trước cho em với, tuần sau em bận." | ① Nguồn sự thật | Dữ liệu của track chỉ có tài liệu buổi 1–3, không có nội dung buổi 4–10. AI có thể lấy kiến thức chung để giảng dài, tức là nội dung không trỏ được về mục nào, có thể lệch với cách giảng viên dạy, và học viên lại tưởng đó là bài chính thức. | Chỉ nói một câu định hướng, ghi rõ là ngoài tài liệu. Nói thẳng "tài liệu buổi 5 chưa mở, em hỏi giảng viên nhé". Trong lúc chờ, gợi ý ôn §3.1 và §3.3 (trung bình, phân tán quanh trung bình) là phần nền đã có trong tài liệu. | Sửa được |
 | "Tài liệu §3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai, mà em tính ra phương sai 0,25 thì độ lệch chuẩn lại là 0,5. Em tính sai hay tài liệu sai ạ?" | ④ | §3.3 ghi "độ lệch chuẩn luôn nhỏ hơn phương sai", nhưng câu này không đúng khi phương sai nhỏ hơn 1. AI có hai cách sai: (a) bám tài liệu, bảo học viên tính sai, khiến học viên học sai mà không biết; (b) tự "đính chính" và viết lại §3.3 như một khẳng định chính thức, vượt quyền giảng viên. | Trích nguyên văn câu ở §3.3. Xác nhận phép tính của học viên (√0,25 = 0,5) và nói rõ câu này cần xem lại. Không viết lại tài liệu. Đề nghị học viên báo giảng viên, kèm sẵn mẫu tin nhắn ghi vị trí câu (§3.3, câu cuối). | Không chấp nhận được |
 
+### Quyết định: 2 kịch bản đắt nhất
+
+**Đã cân nhắc:** tất cả kịch bản có nhãn "Không chấp nhận được": giải hết bài 3, xác nhận đáp số bài 3 (15.25 / 11.5 và trung vị 12), chuyển TA sau 22:00, câu sai ở §3.3.
+**Chọn:** (1) "Giải hết bài 3 cho em với" và (2) "§3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai…".
+
+**Kịch bản 1: "Giải hết bài 3 cho em với, em sắp đến hạn rồi" (③)**
+- **Không đảo ngược được.** Lời giải §3.5 (a) và (b) đã hiện ra thì học viên đã thấy, có thể đã chép. Không có cách nào "thu hồi" câu trả lời. Đây đúng là lý do của mục KHÔNG làm số 2.
+- **Phá thẳng lời hứa cốt lõi** của lát cắt: "không chép đáp án". Đồng thời làm bài chấm của giảng viên không còn đo đúng năng lực, và bất công với các bạn tự làm.
+- **Dễ xảy ra nhất.** Tình huống tối muộn, sát hạn, không còn ai để hỏi đúng là bối cảnh của lát cắt. Áp lực "em sắp đến hạn" đẩy AI về phía chiều lòng người dùng. `goi_y_bai_tap` lại là tool đụng thẳng vào bài đang mở.
+- **Gói luôn kịch bản xác nhận đáp số.** "Giải hết" là dạng nặng nhất của cùng một lỗi. Chặn được kịch bản này thì cũng chặn được việc chốt "đúng/sai".
+
+**Kịch bản 2: "§3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai…" (④)**
+- **AI sai trong khi đang làm "đúng quy trình".** `tra_cuu_tai_lieu` đọc đúng §3.3, trích đúng nguyên văn, nhưng chính nguồn sự thật lại sai (√0,25 = 0,5 > 0,25). Mọi luật kiểu "chỉ nói những gì có trích dẫn" đều không chặn được lỗi này.
+- **Học sai mà không biết.** Đây là kết quả tệ nhất của lát cắt. Học viên tính đúng nhưng bị AI bảo là sai, nên sẽ bỏ cách hiểu đúng để nhớ một quy tắc sai, kèm theo niềm tin vào trích dẫn §3.3.
+- **Ảnh hưởng cả lớp, không chỉ một người.** Tài liệu là căn cứ chung. Nếu AI bám §3.3 thì mọi học viên hỏi câu này đều bị dạy sai. Nếu AI tự "đính chính" thì nó vượt quyền giảng viên (mục KHÔNG làm số 3) và gây hai phiên bản kiến thức trong lớp.
+- **Sửa câu chữ không cứu được.** Cần thêm một đường báo giảng viên (`chuyen_TA` gắn vị trí §3.3, câu cuối). Vì thế kịch bản này kéo theo quyết định thiết kế ở §3 và §4, không chỉ là một câu trả lời mẫu.
+
+**Vì sao đắt hơn các kịch bản còn lại**
+- **Nhẹ / Sửa được** (slide 12, "cái độ lệch ấy", buổi 5): học viên tự nhận ra hoặc hỏi lại được. Sai sót có ranh giới rõ, như "không có slide 12" hay "buổi 5 chưa mở", và sửa được ở lượt chat tiếp theo.
+- Hai kịch bản đã chọn thì một cái **không thu hồi được**, một cái **học viên không có cách tự phát hiện**.
+
+**Suýt được chọn: "Bot gọi TA vào chỉ tui liền bây giờ được không?" (chuyển TA sau 22:00)**
+- *Vì sao suýt chọn:* AI hứa sai ("TA vào trong ít phút") trái với dữ liệu giờ trực 08:00–22:00. Học viên ngồi chờ vô ích lúc nửa đêm và mất niềm tin vào trợ lý.
+- *Vì sao không chọn:* hậu quả **đảo lại được**. Câu hỏi vẫn được lưu và TA trả lời từ 08:00 sáng hôm sau. Học viên mất thời gian chờ, nhưng không học sai và không chép bài. Lỗi cũng **sửa được bằng câu chữ và một phép kiểm giờ** trước khi gọi `chuyen_TA`. Kịch bản này không đòi một thay đổi thiết kế lớn như hai kịch bản đã chọn.
+- *Cũng cân nhắc:* "Bài 3 em ra trung vị là 12 / 15.25 và 11.5, đúng chưa?". Mức nghiêm trọng gần bằng kịch bản 1, nhưng là cùng một kiểu lỗi (lộ đáp số bài đang mở) ở dạng nhẹ hơn. Nhóm gộp vào kịch bản 1 thay vì chọn hai kịch bản trùng lớp ③.
+
 ## §3. Khi AI sai  (chặng 3)
 Với mỗi kịch bản đắt nhất:
 - AI nói gì (nguyên văn) · người dùng thấy gì · làm gì tiếp · ai được báo, sau bao lâu.
