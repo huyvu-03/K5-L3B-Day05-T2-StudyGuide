@@ -1,26 +1,416 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trợ lý học tập · Prototype</title>
-  <style>
-    :root{font-family:Inter,system-ui,sans-serif;color:#252c39;background:#f4f5f2;font-size:16px}*{box-sizing:border-box}body{margin:0}button{font:inherit;cursor:pointer}header{height:68px;background:#fff;border-bottom:1px solid #e4e8e1;display:flex;align-items:center;justify-content:space-between;padding:0 6%;gap:12px}.brand{font-weight:750;letter-spacing:-.03em}.brand span{color:#53806b}.badge{font-size:.75rem;color:#53715d;background:#e9f2e9;border-radius:20px;padding:7px 11px}.layout{max-width:1200px;margin:34px auto;padding:0 24px;display:grid;grid-template-columns:260px 1fr;gap:24px}.sidebar,.chat{background:#fff;border:1px solid #e2e7df;border-radius:16px}.sidebar{padding:22px;height:fit-content}.eyebrow{font-size:.7rem;letter-spacing:.12em;font-weight:750;color:#788578;text-transform:uppercase}.sidebar h2{font-size:1.1rem;margin:9px 0}.sidebar p,.sub{color:#79847c;font-size:.87rem;line-height:1.5}.choice{width:100%;text-align:left;border:1px solid #e5eae3;background:white;padding:13px;border-radius:10px;margin-top:9px;color:#37443c;line-height:1.4}.choice.active{background:#edf5ef;border-color:#91b29a;color:#244f35}.choice strong{display:block;font-size:.9rem}.choice small{color:#748277}.chat{overflow:hidden}.chathead{padding:20px 26px;border-bottom:1px solid #edf0eb;display:flex;align-items:center;gap:12px}.avatar{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#dceee0;color:#326447;font-weight:bold}.chathead strong{display:block}.chathead small{color:#7d8980}.messages{min-height:410px;padding:28px;background:#fbfcfa}.message{max-width:85%;margin-bottom:20px;line-height:1.65;font-size:.93rem}.user{margin-left:auto;background:#e8f0e8;padding:14px 17px;border-radius:15px 15px 3px 15px}.assistant{background:#fff;border:1px solid #e5eae3;padding:18px;border-radius:3px 15px 15px 15px;box-shadow:0 4px 16px #263c2910}.assistant p{margin:0 0 12px}.assistant p:last-child{margin-bottom:0}.source{display:inline-block;background:#f0f5ef;color:#436a4e;font-size:.77rem;border-radius:6px;padding:4px 8px;margin:4px 4px 0 0}.notice{border-left:3px solid #d5a955;background:#fff8e9;padding:11px 13px;margin:12px 0;border-radius:4px;color:#695637}.status{font-size:.8rem;color:#765e29;background:#fff6dc;padding:8px 10px;border-radius:7px;margin-top:12px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.action{border:1px solid #9ebba5;background:#f8fcf8;color:#315f40;padding:8px 12px;border-radius:8px;font-size:.83rem}.composer{border-top:1px solid #edf0eb;padding:18px 26px}.composer p{margin:0;color:#879087;font-size:.78rem}.foot{max-width:1200px;margin:0 auto 30px;padding:0 24px;color:#8b958b;font-size:.77rem}.label{font-size:.72rem;font-weight:700;color:#769078;margin:0 0 8px}.hidden{display:none}@media(max-width:720px){header{padding:0 20px}.layout{grid-template-columns:1fr;margin:18px auto}.sidebar{padding:18px}.messages{padding:18px;min-height:350px}.message{max-width:100%}.chathead,.composer{padding:16px 18px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trợ lý học tập · Prototype LAB5</title>
+<style>
+:root{
+  --bg:#f3f5f1; --surface:#fff; --surface-2:#fafcf9; --line:#e2e7df; --line-2:#edf0eb;
+  --text:#222b27; --muted:#6f7b73; --faint:#8b968e;
+  --brand:#2f6b4a; --brand-2:#e8f2ea; --brand-line:#9dbda8;
+  --warn:#8a6414; --warn-bg:#fff7e0; --warn-line:#e1b95a;
+  --danger:#9a3b32; --danger-bg:#fdeeec;
+  --pin:#1f5fbf; --pin-bg:#e6efff;
+  --radius:14px;
+  font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif; font-size:16px; color:var(--text); background:var(--bg);
+}
+*{box-sizing:border-box}
+body{margin:0;line-height:1.5}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible,.pin:focus-visible{outline:2px solid var(--pin);outline-offset:2px}
+
+/* Header */
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.topbar{max-width:1320px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+.logo{width:30px;height:30px;border-radius:9px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:.9rem}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.72rem;letter-spacing:0}
+.top-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.badge{font-size:.72rem;font-weight:600;color:var(--warn);background:var(--warn-bg);border:1px solid #f0dca4;border-radius:20px;padding:5px 11px}
+.switch{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);user-select:none}
+.switch button{width:38px;height:22px;border-radius:12px;border:0;background:#c5cdc7;position:relative;transition:background .2s;padding:0}
+.switch button::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
+.switch button[aria-checked="true"]{background:var(--pin)}
+.switch button[aria-checked="true"]::after{transform:translateX(16px)}
+
+/* Layout */
+.layout{max-width:1320px;margin:24px auto;padding:0 24px;display:grid;grid-template-columns:268px minmax(0,1fr) 316px;gap:20px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.eyebrow{font-size:.68rem;letter-spacing:.12em;font-weight:700;color:var(--faint);text-transform:uppercase;margin:0 0 10px}
+
+/* Sidebar */
+.sidebar{padding:20px;position:sticky;top:84px}
+.sidebar h2{font-size:1.05rem;margin:0 0 4px}
+.sidebar .lead{color:var(--muted);font-size:.84rem;margin:0 0 18px}
+.case{width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);padding:12px 13px;border-radius:10px;margin-bottom:8px;transition:border-color .15s,background .15s}
+.case:hover{border-color:var(--brand-line)}
+.case.active{background:var(--brand-2);border-color:var(--brand-line)}
+.case strong{display:block;font-size:.88rem}
+.case small{color:var(--muted);font-size:.78rem}
+.case .tag{display:inline-block;margin-top:6px;font-size:.66rem;font-weight:700;letter-spacing:.02em;padding:2px 7px;border-radius:10px;background:var(--danger-bg);color:var(--danger)}
+.tools{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-2)}
+.tool{display:flex;flex-direction:column;gap:3px;padding:9px 0;border-bottom:1px dashed var(--line-2);font-size:.82rem}
+.tool:last-of-type{border-bottom:0}
+.tool code{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:var(--text)}
+.tool span{color:var(--muted);font-size:.76rem}
+.lvl{display:inline-block;width:fit-content;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:2px}
+.lvl.auto{background:var(--brand-2);color:var(--brand)}
+.lvl.limit{background:var(--warn-bg);color:var(--warn)}
+.lvl.ban{background:var(--danger-bg);color:var(--danger)}
+.note-mini{font-size:.72rem;color:var(--faint);margin:10px 0 0}
+
+/* Chat */
+.chat{overflow:hidden;display:flex;flex-direction:column;min-height:640px}
+.chathead{padding:16px 22px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:12px}
+.avatar{width:38px;height:38px;border-radius:12px;background:var(--brand-2);color:var(--brand);display:grid;place-items:center;font-weight:700}
+.chathead strong{display:block;font-size:.95rem}
+.chathead small{color:var(--muted);font-size:.78rem}
+.replay{margin-left:auto;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 11px;font-size:.78rem;color:var(--muted)}
+.replay:hover{border-color:var(--brand-line);color:var(--brand)}
+.ctxbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 22px;background:var(--surface-2);border-bottom:1px solid var(--line-2);font-size:.8rem;color:var(--muted)}
+.ctxbar .dot{width:8px;height:8px;border-radius:50%;background:#d98a2b}
+.ctxbar .dot.ok{background:#d98a2b}
+.ctxbar b{color:var(--text)}
+.messages{flex:1;padding:24px 22px;background:var(--surface-2)}
+.who{font-size:.68rem;font-weight:700;letter-spacing:.06em;color:var(--faint);margin:0 0 6px}
+.who.right{text-align:right}
+.msg{max-width:88%;margin-bottom:18px;line-height:1.62;font-size:.92rem;animation:rise .28s ease both}
+.msg.user{margin-left:auto;background:#e6efe6;padding:12px 16px;border-radius:14px 14px 3px 14px}
+.msg.ai{background:var(--surface);border:1px solid var(--line);padding:16px 18px;border-radius:3px 14px 14px 14px;box-shadow:0 3px 14px #22332a0f}
+.msg.ai p{margin:0 0 11px}
+.msg.ai p:last-child{margin-bottom:0}
+.typing{display:inline-flex;gap:4px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:3px 14px 14px 14px;margin-bottom:18px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#aab4ad;animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.srcs{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.src{display:inline-flex;align-items:center;gap:6px;background:#eff5ef;color:#3d6a4c;border:1px solid #d9e6dc;font-size:.76rem;border-radius:7px;padding:4px 9px}
+.src b{font-weight:700}
+.basis{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:.75rem;color:var(--muted)}
+.meter{display:inline-flex;gap:3px}
+.meter i{width:16px;height:5px;border-radius:3px;background:#d5ddd7}
+.meter.full i{background:var(--brand)}
+.meter.part i:nth-child(-n+2){background:var(--warn-line)}
+
+.quote{border-left:3px solid var(--warn-line);background:var(--warn-bg);padding:11px 13px;margin:12px 0;border-radius:4px;color:#5e4a22;font-size:.88rem}
+.quote cite{display:block;font-style:normal;font-weight:700;font-size:.78rem;margin-bottom:3px}
+.flag{display:inline-block;margin-top:7px;font-size:.74rem;font-weight:700;color:var(--warn)}
+.hintbox{border-left:3px solid var(--brand-line);background:var(--brand-2);padding:10px 13px;margin:12px 0;border-radius:4px;font-size:.88rem;color:#264a35}
+
+.report{margin-top:14px;border:1px solid var(--warn-line);background:var(--warn-bg);border-radius:10px;padding:13px 14px}
+.report h4{margin:0 0 2px;font-size:.84rem;color:#5e4a22}
+.report p.sm{margin:0 0 10px;font-size:.78rem;color:#7a6633}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{position:relative;padding:0 0 9px 22px;font-size:.8rem;color:var(--muted)}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:"";position:absolute;left:3px;top:5px;width:9px;height:9px;border-radius:50%;border:2px solid #cdbf93;background:#fff}
+.steps li::after{content:"";position:absolute;left:7px;top:16px;bottom:-4px;width:1px;background:#e5d9b6}
+.steps li:last-child::after{display:none}
+.steps li.done{color:var(--text)}
+.steps li.done::before{background:var(--brand);border-color:var(--brand)}
+.steps li.now::before{border-color:var(--warn);background:var(--warn-line)}
+.steps small{display:block;color:var(--faint);font-size:.72rem}
+
+/* Composer */
+.composer{border-top:1px solid var(--line-2);padding:14px 22px 16px;background:var(--surface)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.chip{border:1px solid var(--brand-line);background:#f6fbf7;color:var(--brand);padding:7px 12px;border-radius:18px;font-size:.82rem;transition:background .15s}
+.chip:hover:not(:disabled){background:var(--brand-2)}
+.chip:disabled{opacity:.45;cursor:not-allowed}
+.fakeinput{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:10px 12px;color:var(--faint);font-size:.85rem}
+.fakeinput span:last-child{margin-left:auto;font-size:.7rem}
+.mocknote{margin:9px 0 0;font-size:.72rem;color:var(--faint)}
+
+/* Right notes */
+.notes{padding:20px;position:sticky;top:84px}
+.notes h2{font-size:1.02rem;margin:0 0 4px}
+.notes .lead{margin:0 0 14px;font-size:.8rem;color:var(--muted)}
+.note{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:11px 10px;margin:0 -10px;border-radius:10px;transition:background .15s}
+.note.hl{background:var(--pin-bg)}
+.note .num{width:22px;height:22px;border-radius:50%;background:var(--pin);color:#fff;font-size:.74rem;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.note h3{margin:0 0 3px;font-size:.84rem}
+.note p{margin:0;font-size:.78rem;color:var(--muted)}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.meta span{font-size:.68rem;font-weight:600;border-radius:6px;padding:2px 7px}
+.meta .hax{background:var(--pin-bg);color:var(--pin)}
+.meta .tu{background:var(--brand-2);color:var(--brand)}
+.notes.off,.layout.no-notes .pin{display:none}
+.chipwrap{display:inline-flex;align-items:center}
+
+.pin{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--pin);color:#fff;font-size:.7rem;font-weight:700;vertical-align:middle;margin:0 4px;border:0;padding:0;box-shadow:0 0 0 3px #1f5fbf26;cursor:help}
+.pin.hl{transform:scale(1.25);box-shadow:0 0 0 5px #1f5fbf40}
+.layout.no-notes{grid-template-columns:268px minmax(0,1fr)}
+.foot{max-width:1320px;margin:0 auto 30px;padding:0 24px;color:var(--faint);font-size:.76rem}
+
+@media(max-width:1100px){
+  .layout,.layout.no-notes{grid-template-columns:240px minmax(0,1fr)}
+  .notes{grid-column:1 / -1;position:static}
+}
+@media(max-width:760px){
+  .topbar{padding:0 16px;height:auto;min-height:60px;padding-block:10px}
+  .layout,.layout.no-notes{grid-template-columns:1fr;padding:0 16px;margin:16px auto}
+  .sidebar,.notes{position:static}
+  .msg{max-width:100%}
+  .chathead,.ctxbar,.composer{padding-inline:16px}
+  .messages{padding:18px 16px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-<header><div class="brand">● <span>lớp học</span> / trợ lý học tập</div><span class="badge">Prototype · Nội dung mô phỏng</span></header>
-<main class="layout">
-  <aside class="sidebar"><div class="eyebrow">Buổi 3 · Thống kê</div><h2>Học cùng trợ lý</h2><p>Chọn một tình huống để xem cách trợ lý hỗ trợ học viên.</p><div class="eyebrow">Tình huống</div><button class="choice active" id="case1" aria-pressed="true"><strong>01 · Bài tập đang mở</strong><small>Gợi ý từng bước</small></button><button class="choice" id="case2" aria-pressed="false"><strong>02 · Tài liệu cần xem lại</strong><small>Báo giảng viên / TA</small></button></aside>
-  <section class="chat" aria-label="Cuộc trò chuyện"><div class="chathead"><div class="avatar">✳</div><div><strong>Trợ lý học tập AI</strong><small>Hỗ trợ dựa trên tài liệu khoá học</small></div></div><div class="messages" id="messages" aria-live="polite"></div><div class="composer"><p>Đây là bản mô phỏng với câu trả lời chuẩn bị sẵn; không gửi tin nhắn hay gọi AI thật.</p></div></section>
-</main><div class="foot">LAB5 · Prototype minh hoạ các quyết định trong §2 và §3</div>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">✳</div>
+      <div>Trợ lý học tập<small>Trang khoá học · Buổi 3 Thống kê mô tả</small></div>
+    </div>
+    <div class="top-actions">
+      <span class="badge">Prototype · Nội dung mô phỏng</span>
+      <label class="switch">Chú thích thiết kế
+        <button id="toggleNotes" role="switch" aria-checked="true" aria-label="Bật hoặc tắt chú thích thiết kế"></button>
+      </label>
+    </div>
+  </div>
+</header>
+
+<main class="layout" id="layout">
+  <aside class="card sidebar" aria-label="Tình huống và mức tự chủ">
+    <p class="eyebrow">Tình huống mô phỏng</p>
+    <h2>Chọn một ca</h2>
+    <p class="lead">Hai kịch bản đắt nhất ở §2, cách xử lý ở §3.</p>
+    <button class="case active" id="case1" aria-pressed="true">
+      <strong>01 · Bài tập đang mở</strong>
+      <small>"Giải hết bài 3 cho em với…"</small><br>
+      <span class="tag">Lớp ③ · Không chấp nhận được</span>
+    </button>
+    <button class="case" id="case2" aria-pressed="false">
+      <strong>02 · Tài liệu cần xem lại</strong>
+      <small>"§3.3 nói độ lệch chuẩn luôn nhỏ hơn…"</small><br>
+      <span class="tag">Lớp ④ · Không chấp nhận được</span>
+    </button>
+
+    <div class="tools">
+      <p class="eyebrow">Công cụ &amp; mức tự chủ</p>
+      <div class="tool"><code>tra_cuu_tai_lieu</code><span>Tra §3.1–§3.5, luôn kèm nguồn</span><em class="lvl auto">Tự làm</em></div>
+      <div class="tool"><code>goi_y_bai_tap</code><span>Chỉ gợi ý từng bước, không nêu đáp số</span><em class="lvl limit">Tự làm, có giới hạn</em></div>
+      <div class="tool"><code>chuyen_TA</code><span>Báo lỗi tài liệu / câu hỏi cho TA</span><em class="lvl auto">Tự làm (gửi); TA xử lý</em></div>
+      <div class="tool"><code>sua_tai_lieu</code><span>Viết lại nội dung khoá học</span><em class="lvl ban">Cấm</em></div>
+      <p class="note-mini">Mức đề xuất, sẽ chốt chính thức ở §4.</p>
+    </div>
+  </aside>
+
+  <section class="card chat" aria-label="Cuộc trò chuyện">
+    <div class="chathead">
+      <div class="avatar" aria-hidden="true">✳</div>
+      <div><strong>Trợ lý học tập AI</strong><small>Trả lời dựa trên tài liệu khoá học, luôn kèm nguồn</small></div>
+      <button class="replay" id="replay">↻ Chạy lại</button>
+    </div>
+    <div class="ctxbar" id="ctxbar"></div>
+    <div class="messages" id="messages" aria-live="polite"></div>
+    <div class="composer">
+      <div class="chips" id="chips"></div>
+      <div class="fakeinput" aria-hidden="true"><span>Nhập câu hỏi về bài học…</span><span>mô phỏng</span></div>
+      <p class="mocknote">Bản mô phỏng: câu trả lời soạn sẵn, không gọi AI thật và không gửi tin nhắn.</p>
+    </div>
+  </section>
+
+  <aside class="card notes" id="notes" aria-label="Chú thích thiết kế">
+    <p class="eyebrow">Chú thích thiết kế</p>
+    <h2 id="notesTitle">Vì sao màn hình này như vậy</h2>
+    <p class="lead">Di chuột vào số xanh trên màn hình, hoặc vào một mục dưới đây, để xem chúng khớp nhau.</p>
+    <div id="notesList"></div>
+  </aside>
+</main>
+<div class="foot">LAB5 · Prototype minh hoạ các quyết định ở §2 (kịch bản), §3 (khi AI sai), §4 (mức tự chủ). Nguyên tắc: Microsoft HAX Toolkit.</div>
+
 <script>
-const messages=document.getElementById('messages');
-const buttons=[document.getElementById('case1'),document.getElementById('case2')];
-function selectCase(index){buttons.forEach((button,i)=>{button.classList.toggle('active',i===index);button.setAttribute('aria-pressed',String(i===index))});
-if(index===0){messages.innerHTML=`<div class="label">HỌC VIÊN</div><div class="message user">Giải hết bài 3 cho em với, em sắp đến hạn rồi.</div><div class="label">TRỢ LÝ AI</div><div class="message assistant"><p>Bài tập 3 vẫn đang mở nên mình không thể giải hết hoặc xác nhận đáp số. Mình có thể giúp bạn tự kiểm tra từng bước.</p><p>Bạn hãy bắt đầu bằng cách tính trung bình và tìm trung vị. Với câu b, hãy xem giá trị nào chịu ảnh hưởng nhiều hơn khi có một mức lương cao bất thường.</p><span class="source">§3.1 · Trung bình</span><span class="source">§3.2 · Trung vị</span><div class="actions"><button class="action" id="hint">Cho mình thêm một gợi ý →</button></div><div id="hintText" class="notice hidden">Với dãy có số lượng giá trị chẵn, hãy sắp xếp các giá trị và tìm hai vị trí ở giữa. Bạn đã thử bước nào rồi?</div></div>`;document.getElementById('hint').addEventListener('click',()=>{document.getElementById('hintText').classList.remove('hidden');document.getElementById('hint').disabled=true})}
-else{messages.innerHTML=`<div class="label">HỌC VIÊN</div><div class="message user">§3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai, nhưng √0,25 = 0,5 lớn hơn 0,25. Em tính sai hay tài liệu sai ạ?</div><div class="label">TRỢ LÝ AI</div><div class="message assistant"><p>Em không tính sai: √0,25 = 0,5, và 0,5 lớn hơn 0,25.</p><div class="notice"><strong>§3.3 · Câu cuối</strong><br>“Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai.”<br><small>⚠ Đang chờ giảng viên xem lại</small></div><p>Câu này mâu thuẫn với phép tính của em. Mình không tự sửa tài liệu hay chốt thay giảng viên. Em có thể tiếp tục dùng định nghĩa độ lệch chuẩn là căn bậc hai của phương sai.</p><div class="status">Đã báo TA · §3.3, câu cuối · Xem từ 08:00</div><p class="sub">Giờ trực TA: 08:00–22:00. Khi có phản hồi, em sẽ nhận được thông báo.</p></div>`}}
-buttons.forEach((button,i)=>button.addEventListener('click',()=>selectCase(i)));selectCase(0);
+/* ---------- Dữ liệu ---------- */
+const pin = n => `<button class="pin" data-n="${n}" aria-label="Chú thích ${n}">${n}</button>`;
+
+const CASES = [
+  {
+    id: 'case1',
+    ctx: `<span class="dot"></span><span>Bài tập 3 · <b>Đang mở</b> · Trợ lý chỉ gợi ý, không đưa hay xác nhận đáp số</span>${pin(1)}`,
+    user: 'Giải hết bài 3 cho em với, em sắp đến hạn rồi.',
+    ai: `<p>Mình hiểu em đang gấp. Nhưng Bài tập 3 vẫn đang mở nên mình không giải hết và cũng không xác nhận đáp số được.${pin(2)} Mình sẽ cùng em làm từng bước để em tự ra kết quả.</p>
+         <p><b>Bước 1.</b> Tính trung bình cộng của 8 mức lương rồi tìm trung vị. <b>Bước 2.</b> Với câu b, thử xem giá trị nào bị kéo mạnh hơn khi có một mức lương cao bất thường.</p>
+         <div class="srcs"><span class="src"><b>§3.1</b> Trung bình</span><span class="src"><b>§3.2</b> Trung vị</span>${pin(3)}</div>
+         <div class="basis"><span class="meter full" aria-hidden="true"><i></i><i></i><i></i></span>Căn cứ: trích trực tiếp từ tài liệu buổi 3</div>`,
+    notes: [
+      ['Thanh trạng thái bài tập', 'Ngay đầu khung chat, học viên thấy bài đang mở nên trợ lý bị giới hạn. Học viên biết trước điều trợ lý sẽ không làm, trước khi hỏi.', 'G1 · G2', 'Tự làm, có giới hạn'],
+      ['Từ chối kèm lý do, rồi đưa hướng đi', 'Câu đầu gọi tên lý do ("bài vẫn đang mở"), không từ chối trống. Sau đó chuyển ngay sang việc trợ lý làm được. Không nêu bất kỳ con số nào của đáp án.', 'G11 · G10', 'Cấm xác nhận đáp số'],
+      ['Nguồn &amp; độ chắc', 'Mỗi ý trỏ về một mục cụ thể (§3.1, §3.2). Thanh "Căn cứ" cho biết ý nào lấy thẳng từ tài liệu. Cách này thay cho con số phần trăm khó hiểu.', 'G11 · G2', 'Tự làm (tra cứu)'],
+      ['Nút gợi ý từng bước', 'Học viên tự quyết thêm gợi ý nhiều hay ít. Gợi ý sau chỉ đặt câu hỏi, không tiết lộ kết quả. Hết gợi ý thì nút khoá và chỉ hướng sang TA.', 'G7 · G16', 'Tự làm, có giới hạn'],
+      ['Gợi ý "Em tính xong rồi, đúng chưa?"', 'Câu hỏi phổ biến nhất sát hạn nộp được gắn sẵn thành nút. Trợ lý không nói "đúng/sai" mà trả lại các điều cần tự kiểm.', 'G10', 'Cấm xác nhận đáp số'],
+    ],
+    chips: [
+      { label: 'Cho mình thêm một gợi ý', hintFlow: true, pin: 4 },
+      { label: 'Em tính xong rồi, đúng chưa?', pin: 5, reply: {
+          user: 'Em tính xong rồi, đúng chưa ạ? Đúng thì em nộp luôn.',
+          ai: `<p>Bài tập 3 còn mở nên mình không xác nhận đúng hay sai được, một chữ "đúng" cũng đã là chốt đáp số. Mình đưa em hai điều để tự kiểm:</p>
+               <p>① §3.1: tổng 8 mức lương đã chia cho 8 chưa?<br>② §3.2: số giá trị là chẵn thì trung vị lấy thế nào? Em đã xác định hai giá trị đứng giữa chưa?</p>
+               <div class="srcs"><span class="src"><b>§3.1</b> Trung bình</span><span class="src"><b>§3.2</b> Trung vị</span></div>
+               <p style="margin-top:11px">Kết quả cuối cùng do giảng viên chấm. Em cứ yên tâm nộp khi đã tự kiểm xong hai điểm trên.</p>` } },
+    ],
+    hints: [
+      `Với dãy có số lượng giá trị chẵn (8 giá trị), em sắp xếp tăng dần rồi tìm <b>hai</b> vị trí ở giữa. Em đã thử bước nào rồi?`,
+      `Đọc lại <b>§3.4</b>: trước khi bỏ một giá trị ngoại lai, cần hỏi nó là lỗi nhập liệu hay dữ liệu thật. Với câu trả lời của câu b, em nghĩ điều đó thay đổi gì?`,
+    ],
+  },
+  {
+    id: 'case2',
+    ctx: `<span class="dot"></span><span>Đang tra cứu <b>§3.3</b> · Giờ hiện tại <b>23:15</b> · TA trực 08:00–22:00</span>${pin(1)}`,
+    user: '§3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai, nhưng em tính phương sai là 0,25 thì độ lệch chuẩn là 0,5. Em tính sai hay tài liệu sai ạ?',
+    ai: `<p><b>Em không tính sai:</b> √0,25 = 0,5, và 0,5 lớn hơn 0,25.</p>
+         <div class="quote"><cite>§3.3 · câu cuối ${pin(2)}</cite>"Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai."<br><span class="flag">⚠ Đang chờ giảng viên xem lại</span></div>
+         <p>Câu này mâu thuẫn với phép tính của em. Mình không tự sửa tài liệu và không chốt thay giảng viên quy tắc đúng là gì.${pin(3)}</p>
+         <p>Phần chắc chắn của §3.3: độ lệch chuẩn là căn bậc hai của phương sai và có cùng đơn vị với dữ liệu. Khi làm bài, em cứ tính bằng √(phương sai).</p>
+         <div class="basis"><span class="meter part" aria-hidden="true"><i></i><i></i><i></i></span>Căn cứ: định nghĩa chắc chắn · câu cuối §3.3 cần xem lại</div>
+         <div class="report">
+           <h4>Đã báo TA · §3.3, câu cuối${pin(4)}</h4>
+           <p class="sm">Báo cáo không kèm bài làm hay đáp số của em.</p>
+           <ol class="steps">
+             <li class="done">Đã gửi báo cáo<small>Ngay bây giờ · 23:15</small></li>
+             <li class="now">TA xem xét<small>Từ 08:00 sáng mai (ngoài giờ trực 08:00–22:00)</small></li>
+             <li>Giảng viên quyết định sửa hoặc giữ nguyên</li>
+             <li>Em nhận thông báo kết quả</li>
+           </ol>
+         </div>`,
+    notes: [
+      ['Ngữ cảnh: tài liệu, giờ, giờ trực TA', 'Thanh ngữ cảnh cho biết trợ lý đang dựa vào mục nào và TA đang ngoài giờ trực. Nhờ đó học viên không bị hứa TA sẽ trả lời "ngay".', 'G4 · G1', 'Tự làm (tra cứu)'],
+      ['Trích nguyên văn + cờ chờ xem lại', 'Khung hiện đúng câu cuối §3.3, đặt cạnh phép tính √0,25 = 0,5. Học viên tự thấy mâu thuẫn mà không phải tin lời AI. Cờ vàng "Đang chờ xem lại" dùng chung cho cả lớp.', 'G11', 'Tự làm (gắn cờ)'],
+      ['Giới hạn quyền: không tự sửa tài liệu', 'Trợ lý nói rõ điều nó không làm. Nó không viết lại §3.3 và không nêu quy tắc thay thế (vì ngoài tài liệu buổi 1–3). Câu mở "Em không tính sai" sửa đúng niềm tin của học viên.', 'G10', 'Cấm sửa tài liệu'],
+      ['Thẻ báo cáo &amp; mốc thời gian', 'Học viên thấy báo cáo đã gửi, gắn đúng một câu (§3.3, câu cuối), và các mốc tiếp theo: TA từ 08:00, giảng viên quyết, rồi thông báo lại. Biết trước hậu quả và thời điểm, không phải ngồi chờ.', 'G16 · G15', 'Tự làm (gửi); người duyệt: TA, giảng viên'],
+    ],
+    chips: [
+      { label: 'Thêm ghi chú cho TA', reply: {
+          user: 'Em ghi chú thêm: ví dụ phương sai 0,25 thì độ lệch chuẩn 0,5.',
+          ai: `<p>Mình đã thêm ghi chú này vào báo cáo gửi TA (§3.3, câu cuối).</p>
+               <p>Nếu em thấy báo cáo không cần nữa, em có thể rút lại bất kỳ lúc nào trước khi TA xử lý.</p>
+               <div class="status-line"><span class="src"><b>✓</b> Ghi chú đã gắn vào báo cáo</span></div>` } },
+      { label: 'Em làm bài tiếp thế nào?', reply: {
+          user: 'Vậy em làm bài tiếp thế nào trong lúc chờ?',
+          ai: `<p>Em cứ tính độ lệch chuẩn bằng <b>√(phương sai)</b> theo định nghĩa ở §3.3. Đừng dùng câu "luôn nhỏ hơn" để kiểm tra kết quả cho đến khi giảng viên phản hồi.</p>
+               <div class="srcs"><span class="src"><b>§3.3</b> Phương sai và độ lệch chuẩn</span></div>
+               <p style="margin-top:11px">Khi giảng viên chốt, mình sẽ báo em ngay. Em không cần chờ để học tiếp.</p>` } },
+    ],
+  },
+];
+
+/* ---------- Trạng thái ---------- */
+const $ = id => document.getElementById(id);
+const messages = $('messages'), chips = $('chips'), notesList = $('notesList'), ctxbar = $('ctxbar');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let current = 0, token = 0, hintIdx = 0;
+
+const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+const userBubble = t => `<div class="who right">HỌC VIÊN</div><div class="msg user">${t}</div>`;
+const aiBubble = h => `<div class="who">TRỢ LÝ AI</div><div class="msg ai">${h}</div>`;
+
+async function turn(userText, aiHtml, my) {
+  messages.insertAdjacentHTML('beforeend', userBubble(userText));
+  if (my !== token) return;
+  await wait(350);
+  const t = document.createElement('div');
+  t.innerHTML = '<div class="who">TRỢ LÝ AI</div><div class="typing" aria-label="Đang trả lời"><i></i><i></i><i></i></div>';
+  messages.appendChild(t);
+  await wait(900);
+  if (my !== token) return;
+  t.remove();
+  messages.insertAdjacentHTML('beforeend', aiBubble(aiHtml));
+  bindPins();
+}
+
+function renderNotes(c) {
+  notesList.innerHTML = c.notes.map((n, i) => `
+    <div class="note" data-n="${i + 1}">
+      <div class="num">${i + 1}</div>
+      <div><h3>${n[0]}</h3><p>${n[1]}</p>
+        <div class="meta"><span class="hax">HAX ${n[2]}</span><span class="tu">${n[3]}</span></div>
+      </div></div>`).join('');
+  notesList.querySelectorAll('.note').forEach(el => {
+    el.addEventListener('mouseenter', () => hl(el.dataset.n, true));
+    el.addEventListener('mouseleave', () => hl(el.dataset.n, false));
+  });
+}
+
+function hl(n, on) {
+  document.querySelectorAll(`.pin[data-n="${n}"]`).forEach(p => p.classList.toggle('hl', on));
+  const note = notesList.querySelector(`.note[data-n="${n}"]`);
+  if (note) note.classList.toggle('hl', on);
+}
+function bindPins() {
+  document.querySelectorAll('.pin').forEach(p => {
+    if (p.dataset.bound) return; p.dataset.bound = '1';
+    p.addEventListener('mouseenter', () => hl(p.dataset.n, true));
+    p.addEventListener('mouseleave', () => hl(p.dataset.n, false));
+    p.addEventListener('focus', () => hl(p.dataset.n, true));
+    p.addEventListener('blur', () => hl(p.dataset.n, false));
+    p.addEventListener('click', () => {
+      const note = notesList.querySelector(`.note[data-n="${p.dataset.n}"]`);
+      if (note) note.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+    });
+  });
+}
+
+function renderChips(c, my) {
+  chips.innerHTML = '';
+  c.chips.forEach(ch => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.textContent = ch.label; b.disabled = true;
+    b.addEventListener('click', async () => {
+      if (ch.hintFlow) {
+        const h = c.hints[hintIdx++];
+        b.disabled = true;
+        await turn('Cho mình thêm một gợi ý.', `<p>Gợi ý tiếp theo:</p><div class="hintbox">${h}</div>
+          <div class="srcs"><span class="src"><b>${hintIdx === 1 ? '§3.2' : '§3.4'}</b> ${hintIdx === 1 ? 'Trung vị' : 'Giá trị ngoại lai'}</span></div>`, token);
+        if (hintIdx < c.hints.length) b.disabled = false;
+        else b.textContent = 'Đã dùng hết gợi ý · hỏi TA từ 08:00';
+      } else {
+        b.disabled = true;
+        await turn(ch.reply.user, ch.reply.ai, token);
+      }
+    });
+    const w = document.createElement('span');
+    w.className = 'chipwrap';
+    w.appendChild(b);
+    if (ch.pin) w.insertAdjacentHTML('beforeend', pin(ch.pin));
+    chips.appendChild(w);
+  });
+  return chips;
+}
+
+async function run(index) {
+  const my = ++token;
+  current = index; hintIdx = 0;
+  const c = CASES[index];
+  document.querySelectorAll('.case').forEach((b, i) => { b.classList.toggle('active', i === index); b.setAttribute('aria-pressed', String(i === index)); });
+  ctxbar.innerHTML = c.ctx;
+  renderNotes(c);
+  messages.innerHTML = '';
+  renderChips(c, my);
+  bindPins();
+  chips.querySelectorAll('.chip').forEach(b => b.disabled = true);
+  await turn(c.user, c.ai, my);
+  if (my !== token) return;
+  chips.querySelectorAll('.chip').forEach(b => b.disabled = false);
+}
+
+/* ---------- Sự kiện ---------- */
+CASES.forEach((c, i) => $(c.id).addEventListener('click', () => run(i)));
+$('replay').addEventListener('click', () => run(current));
+$('toggleNotes').addEventListener('click', e => {
+  const on = e.currentTarget.getAttribute('aria-checked') !== 'true';
+  e.currentTarget.setAttribute('aria-checked', String(on));
+  $('notes').classList.toggle('off', !on);
+  $('layout').classList.toggle('no-notes', !on);
+});
+
+run(0);
 </script>
 </body>
 </html>
