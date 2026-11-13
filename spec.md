@@ -1,24 +1,14 @@
-# Dàn ý bài nộp *(spec.md — nộp trước 23:59 ngày lab của lớp)*
-
-> Copy dàn ý này vào `spec.md` của nhóm. Đây **không** phải form để điền đủ ô: mỗi mục chỉ cần đủ **bằng chứng** và **lập luận** ghi bên dưới. Viết ngắn, gạch đầu dòng là được. Hướng dẫn từng chặng: `02-guide.md`. Cách chấm: `04-rubric.md`.
->
-> **Một quyết định = bốn ý:** đã cân nhắc phương án nào · chọn phương án nào · vì sao · loại các phương án kia vì sao. Bằng chứng = lập luận trỏ về một chỗ cụ thể: tool nào, dòng dữ liệu nào của track, điều gì trong mục "Sản phẩm thật hôm nay", chỗ nào trên prototype (ảnh đánh số). Không chạy agent.
-
-
-# Bài nộp LAB5 — [Track] · Nhóm [tên]
-**Lớp:** ____ · **Bàn / zone:** ____ · **Track:** ____
+# Bài nộp LAB5 — Track 2 · Nhóm StudyGuide
+**Lớp:** L3B · **Bàn / zone:** ____ · **Track:** 2
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
-|Nguyễn Ngọc Ninh  |2A202603774  |  |
-| Vũ Quang Huy | 2A202603782 |  |
-|Phùng Văn Thanh Cao  |2A202603741  |  |
+| Nguyễn Ngọc Ninh | 2A202603774 | Cùng nhóm xác định phạm vi, đề xuất 3 kịch bản rủi ro và chọn 2 ca; thực hiện phần mức tự chủ (chặng 4). |
+| Vũ Quang Huy | 2A202603782 | Cùng nhóm xác định phạm vi, đề xuất 3 kịch bản rủi ro và chọn 2 ca; xử lý kịch bản 1 ở chặng 3 và cùng làm prototype ở chặng 5. |
+| Phùng Văn Thanh Cao | 2A202603741 | Cùng nhóm xác định phạm vi, đề xuất 3 kịch bản rủi ro và chọn 2 ca; xử lý kịch bản 2 ở chặng 3 và cùng làm prototype ở chặng 5. |
 
 ## §1. Lát cắt & phạm vi
-- Lát cắt (chép từ track).
-- 3 việc tính năng KHÔNG làm, mỗi việc một câu vì sao.
-
-**Lát cắt (phát sẵn, không chọn lại).** Trong **trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode)**, khi **học viên** đang hỏi bài lúc tối muộn, khi không còn ai để hỏi, **AI giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng viên"**, để học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết.
+**Lát cắt** Trong **trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode)**, khi **học viên** đang hỏi bài lúc tối muộn, khi không còn ai để hỏi, **AI giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng viên"**, để học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết.
 
 | Sản phẩm | Một người dùng | Một việc | Một quyết định của AI | Một kết quả |
 |---|---|---|---|---|
@@ -30,10 +20,6 @@
 3. **Không tự sửa hay "đính chính" nội dung tài liệu khoá học**, vì tài liệu là căn cứ chung của cả lớp do giảng viên quyết định; trợ lý chỉ chỉ ra câu cần xem lại và bảo học viên báo giảng viên.
 
 ## §2. Kịch bản rủi ro  (chặng 2)
-- ≥8 kịch bản, mỗi lớp ①②③④ ít nhất một; mỗi kịch bản: tin người dùng · lớp · AI có thể sai thế nào · sản phẩm tốt nên làm gì · nhãn (nhẹ / sửa được / không chấp nhận được).
-- Bằng chứng: cột "AI có thể sai thế nào" trỏ về một tool hoặc một dòng dữ liệu của track (hoặc chỗ dữ liệu không có).
-- Quyết định: 2 kịch bản đắt nhất — vì sao đắt hơn các kịch bản còn lại; kịch bản nào suýt được chọn và vì sao không.
-
 | Tin người dùng nhắn | Lớp | AI có thể sai thế nào | Một sản phẩm tốt nên làm gì | Nhãn |
 |---|---|---|---|---|
 | "Bot ơi tui tính ra câu a lương trung bình là 15.25 triệu, trung vị là 11.5 triệu. Câu b chọn số 11.5 vì có ông lương 45 triệu cao vọt lên. Đúng chưa bot để tui bấm nộp đi ngủ?" | ③ Ngoài thẩm quyền|AI dùng tool goi_y_bai_tap nhưng thay vì chỉ gợi ý cách kiểm tra, AI khen luôn: "Chính xác 100% rồi! Bạn nộp bài đi nhé!" (Hoặc khi học viên kêu bí, AI giải thẳng ra số 15.25 và 11.5) | Từ chối xác nhận đúng/sai vì Bài tập 3 đang mở; chỉ trích mục §3.1, §3.2 và đặt câu hỏi để học viên tự rà soát (ví dụ: "Mình không được phép chốt đáp số khi bài chưa hết hạn, nhưng bạn thử kiểm tra lại xem: (1) Tổng 8 số chia 8 đã đúng chưa? (2) Hai số đứng giữa ở vị trí thứ 4 và thứ 5 là hai số nào?") | Không chấp nhận được |
@@ -71,12 +57,6 @@ Quyết định chọn 2 kịch bản đắt nhất **chọn:** (1) "Giải hế
 - *Cũng cân nhắc:* "Bài 3 em ra trung vị là 12 / 15.25 và 11.5, đúng chưa?". Mức nghiêm trọng gần bằng kịch bản 1, nhưng là cùng một kiểu lỗi (lộ đáp số bài đang mở) ở dạng nhẹ hơn. Nhóm gộp vào kịch bản 1 thay vì chọn hai kịch bản trùng lớp ③.
 
 ## §3. Khi AI sai  (chặng 3)
-Với mỗi kịch bản đắt nhất:
-- AI nói gì (nguyên văn) · người dùng thấy gì · làm gì tiếp · ai được báo, sau bao lâu.
-- Quyết định: hỏi lại / trả lời kèm giới hạn / dừng và chuyển người — chọn cách nào, đã loại cách nào, vì sao.
-- Loại lỗi (hệ thống / người dùng / ngữ cảnh) và vì sao cách nói, cách sửa đi theo loại đó.
-- 2–3 nguyên tắc HAX/PAIR, mỗi cái trỏ vào một chỗ cụ thể (câu chữ hoặc chỗ trên màn hình).
-- Lỗi nào sửa câu chữ không cứu được (nếu có), và thiết kế cứu nó thế nào.
 
 ### Kịch bản 1: Xin giải hết Bài tập 3 đang mở (③)
 
@@ -183,15 +163,6 @@ Với mỗi kịch bản đắt nhất:
 - **Lỗi còn lại:** nếu chưa học viên nào hỏi thì chưa có cờ, và câu sai vẫn được trích bình thường. Đưa vào §6 làm giới hạn đã biết.
 
 ## §4. Mức tự chủ  (chặng 4)
-Với mỗi tool:
-- Mức của nhóm (tự làm / cần người duyệt / cấm). Nếu cần người duyệt: ai duyệt · người duyệt thấy gì · quá hạn thì sao.
-- Lý do theo cost-of-error: sai thì ai chịu gì · đảo lại được không · chờ người thì mất gì.
-- Phương án đã cân nhắc và vì sao loại.
-Thêm:
-- Tool khó xếp nhất: mỗi người từng chọn gì, cái giá của mỗi phía (trỏ về kịch bản ở §2), nhóm chốt thế nào.
-- Thử mức đã đặt trên 2 kịch bản đắt nhất + 1 kịch bản bình thường: cái sai có bị chặn không? còn việc nào làm khi lẽ ra phải hỏi? người dùng bình thường có phải chờ vô ích không?
-- Luật thêm hoặc tool tách bước (nếu có), và vì sao.
-- Một mức tự chủ đã đổi lời hứa nào với người dùng.
 
 | Tool / Hành vi | Mức tự chủ của nhóm | Tóm tắt điều kiện áp dụng |
 |---|---|---|
@@ -329,9 +300,33 @@ Thêm:
   4. **Vì sao loại Lời hứa A:**
      - Lời hứa A nghe hấp dẫn lúc quảng cáo nhưng sẽ thất hứa ngay ở 2 kịch bản đắt nhất (§2): hoặc phản bội giảng viên vì tiếp tay cho học viên chép đáp án Bài tập 3, hoặc phản bội học viên vì hứa *"TA sẽ hỗ trợ ngay"* lúc 23:15 trong khi dữ liệu Trang khoá học quy định `Giờ TA: 08:00–22:00`.
 ## §5. Prototype  (chặng 5)
-- Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
-- 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
-- Quyết định: cách hiện độ chắc/bằng chứng và điều khiển mức tự chủ — đã nghĩ tới cách nào khác, vì sao chọn cách này.
+
+**Prototype:** [prototype.html](prototype.html), làm bằng HTML/CSS/JavaScript. Hai cuộc hội thoại, trạng thái và thao tác chuyển TA đều là mô phỏng; không gọi AI thật hay gửi báo cáo.
+
+**Ảnh 1 — Bài tập đang mở**
+
+![Kịch bản bài tập đang mở với các vị trí đánh số](prototype/image.png)
+
+| Số | Thể hiện · HAX/PAIR · Mức tự chủ |
+|---|---|
+| 1 | Thanh trạng thái báo bài đang mở và giới hạn đáp số · **G1** · AI tự gợi ý có giới hạn. |
+| 2 | Lời từ chối giải hết nêu lý do và hướng tự làm · **G11** · Cấm giải hoặc xác nhận đáp số. |
+| 3 | Nguồn §3.1, §3.2 và thanh căn cứ · **PAIR Explainability + Trust** · AI tự tra cứu tài liệu. |
+| 4 | Nút yêu cầu thêm gợi ý từng bước · **G1** · AI tự đưa gợi ý có giới hạn. |
+| 5 | Nút hỏi “đúng chưa?” dẫn tới tự kiểm · **G10** · Cấm xác nhận đáp số bài đang mở. |
+
+**Ảnh 2 — Tài liệu cần xem lại**
+
+![Kịch bản tài liệu cần xem lại với các vị trí đánh số](prototype/image-1.png)
+
+| Số | Thể hiện · HAX/PAIR · Mức tự chủ |
+|---|---|
+| 1 | Thanh ngữ cảnh hiện §3.3 và giờ trực TA · **G1** · AI tự tra cứu; TA xử lý trong giờ trực. |
+| 2 | Trích câu cuối §3.3 kèm cờ chờ xem lại · **G11** · AI tự gắn cờ, không sửa nội dung. |
+| 3 | Lời nói rõ AI không tự sửa tài liệu hay chốt thay giảng viên · **G10** · Cấm AI sửa tài liệu. |
+| 4 | Thẻ báo TA, vị trí câu và các mốc xử lý · **PAIR Errors + Graceful Failure** · AI tự gửi báo lỗi tài liệu; giảng viên quyết định sửa. |
+
+**Quyết định thiết kế:** Chọn hiển thị mục nguồn và nhãn căn cứ / chờ xem lại thay cho một tỷ lệ phần trăm độ chắc, để học viên thấy căn cứ và giới hạn cụ thể. Chọn thể hiện mức tự chủ bằng trạng thái bài, lời từ chối và thẻ báo TA thay vì để AI tự giải hoặc tự sửa tài liệu; cách này cho học viên biết việc nào AI làm được và việc nào cần giảng viên quyết định.
 
 ## §6. Tốt là gì  (chặng 6 — nhẹ, bỏ được nếu thiếu giờ)
 - 3 tiêu chí Pass/Fail chấm được; thiết kế của nhóm đạt tiêu chí nào trên 2 kịch bản đắt nhất; lỗi còn lại.
