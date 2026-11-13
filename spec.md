@@ -11,7 +11,7 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 |Nguyễn Ngọc Ninh  |2A202603774  |  |
-|  |  |  |
+| Vũ Quang Huy | 2A202603782 |  |
 |  |  |  |
 
 ## §1. Lát cắt & phạm vi
