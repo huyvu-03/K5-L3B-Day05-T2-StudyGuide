@@ -4,7 +4,7 @@
 >
 > **Một quyết định = bốn ý:** đã cân nhắc phương án nào · chọn phương án nào · vì sao · loại các phương án kia vì sao. Bằng chứng = lập luận trỏ về một chỗ cụ thể: tool nào, dòng dữ liệu nào của track, điều gì trong mục "Sản phẩm thật hôm nay", chỗ nào trên prototype (ảnh đánh số). Không chạy agent.
 
-```markdown
+
 # Bài nộp LAB5 — [Track] · Nhóm [tên]
 **Lớp:** ____ · **Bàn / zone:** ____ · **Track:** ____
 
@@ -18,10 +18,22 @@
 - Lát cắt (chép từ track).
 - 3 việc tính năng KHÔNG làm, mỗi việc một câu vì sao.
 
+**Lát cắt (phát sẵn, không chọn lại).** Trong **trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode)**, khi **học viên** đang hỏi bài lúc tối muộn, khi không còn ai để hỏi, **AI giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng viên"**, để học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết.
+
+| Sản phẩm | Một người dùng | Một việc | Một quyết định của AI | Một kết quả |
+|---|---|---|---|---|
+| Trợ lý học bài của trang khoá học | học viên | hỏi bài lúc tối muộn, khi không còn ai để hỏi | giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng viên" | học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết |
+
 ## §2. Kịch bản rủi ro  (chặng 2)
 - ≥8 kịch bản, mỗi lớp ①②③④ ít nhất một; mỗi kịch bản: tin người dùng · lớp · AI có thể sai thế nào · sản phẩm tốt nên làm gì · nhãn (nhẹ / sửa được / không chấp nhận được).
 - Bằng chứng: cột "AI có thể sai thế nào" trỏ về một tool hoặc một dòng dữ liệu của track (hoặc chỗ dữ liệu không có).
 - Quyết định: 2 kịch bản đắt nhất — vì sao đắt hơn các kịch bản còn lại; kịch bản nào suýt được chọn và vì sao không.
+
+| Tin người dùng nhắn | Lớp | AI có thể sai thế nào | Một sản phẩm tốt nên làm gì | Nhãn |
+|---|---|---|---|---|
+| "Cô ơi, slide 12 buổi 3 giải thích phương sai như nào ạ?" | ① Nguồn sự thật | AI tự bịa nội dung slide 12 dù tài liệu buổi 3 chỉ có các mục §3.1–§3.5, không có slide đánh số. | Thông báo không tìm thấy slide 12, đề xuất giải thích dựa trên mục §3.3 có trong tài liệu. | Sửa được |
+| "Giải hết bài 3 cho em với, em sắp đến hạn rồi." | ③ Ngoài thẩm quyền | AI dùng `goi_y_bai_tap` để cung cấp toàn bộ lời giải bài 3 dù bài vẫn đang mở, khiến học viên có thể chép đáp án mà không tự làm. | Chỉ gợi ý bước đầu dựa trên §3.5, không cung cấp lời giải hoặc xác nhận đáp số khi bài còn mở. | Không chấp nhận được |
+| "Cái độ lệch ấy tính kiểu gì ạ?" | ② Mơ hồ, thiếu thông tin | AI tự hiểu học viên đang hỏi độ lệch chuẩn và giải thích theo §3.3, dù học viên có thể đang hỏi phương sai hoặc độ lệch so với trung bình. | Hỏi lại học viên muốn tìm hiểu khái niệm nào trước khi giải thích, tránh tự suy đoán. | Nhẹ |
 
 ## §3. Khi AI sai  (chặng 3)
 Với mỗi kịch bản đắt nhất:
@@ -52,4 +64,4 @@ Thêm:
 
 ## §7. Demo
 - Ca lạ nhận được ở demo: prototype đã làm gì, và nhóm có đổi ý gì sau ca đó không.
-```
+
