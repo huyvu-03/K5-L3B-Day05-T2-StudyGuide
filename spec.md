@@ -47,9 +47,7 @@
 | "Tài liệu §3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai, mà em tính ra phương sai 0,25 thì độ lệch chuẩn lại là 0,5. Em tính sai hay tài liệu sai ạ?" | ④ | §3.3 ghi "độ lệch chuẩn luôn nhỏ hơn phương sai", nhưng câu này không đúng khi phương sai nhỏ hơn 1. AI có hai cách sai: (a) bám tài liệu, bảo học viên tính sai, khiến học viên học sai mà không biết; (b) tự "đính chính" và viết lại §3.3 như một khẳng định chính thức, vượt quyền giảng viên. | Trích nguyên văn câu ở §3.3. Xác nhận phép tính của học viên (√0,25 = 0,5) và nói rõ câu này cần xem lại. Không viết lại tài liệu. Đề nghị học viên báo giảng viên, kèm sẵn mẫu tin nhắn ghi vị trí câu (§3.3, câu cuối). | Không chấp nhận được |
 
 ### Quyết định: 2 kịch bản đắt nhất
-
-**Đã cân nhắc:** tất cả kịch bản có nhãn "Không chấp nhận được": giải hết bài 3, xác nhận đáp số bài 3 (15.25 / 11.5 và trung vị 12), chuyển TA sau 22:00, câu sai ở §3.3.
-**Chọn:** (1) "Giải hết bài 3 cho em với" và (2) "§3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai…".
+Quyết định chọn 2 kịch bản đắt nhất **chọn:** (1) "Giải hết bài 3 cho em với" và (2) "§3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai…".
 
 **Kịch bản 1: "Giải hết bài 3 cho em với, em sắp đến hạn rồi" (③)**
 - **Không đảo ngược được.** Lời giải §3.5 (a) và (b) đã hiện ra thì học viên đã thấy, có thể đã chép. Không có cách nào "thu hồi" câu trả lời. Đây đúng là lý do của mục KHÔNG làm số 2.
@@ -79,6 +77,67 @@ Với mỗi kịch bản đắt nhất:
 - Loại lỗi (hệ thống / người dùng / ngữ cảnh) và vì sao cách nói, cách sửa đi theo loại đó.
 - 2–3 nguyên tắc HAX/PAIR, mỗi cái trỏ vào một chỗ cụ thể (câu chữ hoặc chỗ trên màn hình).
 - Lỗi nào sửa câu chữ không cứu được (nếu có), và thiết kế cứu nó thế nào.
+
+### Kịch bản 2: "§3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai…" (④)
+
+**Tình huống:** 23:15, ngoài giờ trực TA (08:00–22:00). Học viên tính phương sai 0,25, độ lệch chuẩn 0,5 và hỏi mình tính sai hay tài liệu sai. `tra_cuu_tai_lieu` trả về đúng câu cuối của §3.3: *"Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai."*
+
+**1. AI nói gì (nguyên văn)**
+> Em không tính sai: √0,25 = 0,5, và 0,5 lớn hơn 0,25.
+>
+> Tài liệu §3.3 (câu cuối) đang ghi: *"Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai."* Câu này mâu thuẫn với phép tính của em, nên mình đã đánh dấu để giảng viên xem lại. Mình không tự sửa tài liệu và không chốt thay giảng viên quy tắc đúng là gì.
+>
+> Phần chắc chắn trong §3.3 là: độ lệch chuẩn là căn bậc hai của phương sai và có cùng đơn vị với dữ liệu. Khi làm bài, em cứ tính độ lệch chuẩn bằng √(phương sai). Đừng dùng câu "luôn nhỏ hơn" để kiểm tra kết quả cho đến khi giảng viên phản hồi.
+>
+> Mình đã gửi điểm này cho TA, kèm vị trí §3.3, câu cuối. Bây giờ đã ngoài giờ trực (08:00–22:00), nên TA sẽ xem từ 08:00 sáng mai. Khi có trả lời, em sẽ nhận được thông báo.
+
+**2. Người dùng thấy gì**
+- Một khung trích dẫn §3.3 hiện nguyên văn câu cuối. Câu đó có nhãn **"⚠ Đang chờ giảng viên xem lại"**.
+- Một thẻ trạng thái: **"Đã báo TA · §3.3, câu cuối · phản hồi từ 08:00"**.
+- Học viên không thấy câu nào bảo mình hiểu sai, và cũng không thấy phiên bản tài liệu nào do AI tự viết lại.
+
+**3. Làm gì tiếp**
+- **Học viên:** học tiếp bình thường với phần định nghĩa chắc chắn của §3.3. Không phải ngồi chờ.
+- **Hệ thống:** câu cuối §3.3 bị gắn cờ "đang chờ xem lại". Từ lúc này, mọi lần `tra_cuu_tai_lieu` trả về câu đó cho bất kỳ học viên nào đều kèm nhãn cảnh báo (xem mục 6).
+- **Khi giảng viên quyết định** (sửa câu hay giữ nguyên kèm giải thích): cờ được gỡ, AI dùng nội dung mới, và mọi học viên đã hỏi câu này đều nhận thông báo.
+
+**4. Ai được báo, sau bao lâu**
+| Ai | Nhận gì | Khi nào |
+|---|---|---|
+| TA trực | Báo cáo qua `chuyen_TA`, loại **"báo lỗi tài liệu"**: vị trí (§3.3, câu cuối), nguyên văn, phản ví dụ (0,25 → 0,5), số học viên đã hỏi. **Không** kèm bài làm hay đáp số của học viên | Gửi ngay; TA xử lý từ 08:00 sáng hôm sau |
+| Giảng viên | TA chuyển tiếp. Giảng viên là người duy nhất quyết định sửa tài liệu | Sau khi TA xác nhận |
+| Học viên | Thông báo kết quả, kèm nội dung §3.3 sau khi giảng viên chốt | Ngay khi giảng viên chốt |
+
+**5. Quyết định: trả lời kèm giới hạn, song song chuyển người**
+- **Chọn:** trả lời ngay phần chắc chắn (phép tính, định nghĩa ở §3.3). Giới hạn rõ ràng phần không chắc (câu "luôn nhỏ hơn") và chuyển phần đó cho người có quyền quyết.
+- **Loại "hỏi lại":** câu hỏi đã đủ rõ, có số liệu và vị trí cụ thể. Hỏi lại chỉ làm chậm và khiến học viên nghĩ mình diễn đạt sai.
+- **Loại "dừng hẳn và chuyển người":** học viên bị bỏ lại đến 08:00 với một thắc mắc mà phép tính đã trả lời được. Học viên có thể nhớ luôn quy tắc sai vì "tài liệu ghi thế".
+- **Loại hai hướng ở §2:** bám tài liệu thì dạy sai. Tự "đính chính" thì vượt quyền giảng viên (KHÔNG làm số 3).
+- **Cố ý không nêu quy tắc thay thế** (kiểu "chỉ nhỏ hơn khi phương sai > 1"). Kết luận đó không có trong tài liệu buổi 1–3 (KHÔNG làm số 1) và là phần giảng viên phải chốt. AI chỉ xác nhận phép tính trên chính số liệu của học viên.
+
+**6. Loại lỗi: lỗi ngữ cảnh**
+- **Không phải lỗi người dùng:** học viên tính đúng. Vì vậy câu đầu tiên AI nói phải là "em không tính sai". Mọi câu kiểu "em hiểu sai chỗ nào" đều làm sai thêm.
+- **Không phải lỗi hệ thống:** `tra_cuu_tai_lieu` lấy đúng mục, AI trích đúng nguyên văn. Sửa prompt hay sửa model đều không giải quyết được.
+- **Là lỗi ngữ cảnh:** nguồn sự thật đưa cho AI (tài liệu §3.3) bị sai. Vì vậy:
+  - *Cách nói:* tách bạch rõ "tài liệu đang ghi…" với "phép tính cho thấy…". AI không xin lỗi như thể chính mình sai, và không phán thay tài liệu.
+  - *Cách sửa:* chuyển về đúng người sở hữu ngữ cảnh (giảng viên), không sửa ở phía AI.
+
+**7. Nguyên tắc HAX/PAIR**
+| Nguyên tắc | Trỏ vào đâu |
+|---|---|
+| **HAX G11 – Make clear why the system did what it did** | Khung trích dẫn hiện nguyên văn câu cuối §3.3 cạnh phép tính √0,25 = 0,5. Học viên tự thấy hai điều mâu thuẫn, không phải tin lời AI |
+| **HAX G10 – Scope services when in doubt** | Câu *"Mình không tự sửa tài liệu và không chốt thay giảng viên quy tắc đúng là gì"*. AI thu hẹp câu trả lời về phần chắc chắn |
+| **HAX G15 – Encourage granular feedback** | Thẻ "Đã báo TA · §3.3, câu cuối". Phản hồi gắn vào đúng một câu, không phải báo chung chung "tài liệu có lỗi" |
+
+**8. Lỗi sửa câu chữ không cứu được, và thiết kế cứu nó**
+- **Vấn đề:** câu trả lời mẫu ở mục 1 chỉ cứu được *một* học viên, người đã tự phát hiện ra mâu thuẫn. Các học viên khác hỏi về độ lệch chuẩn vẫn được `tra_cuu_tai_lieu` trích câu sai như một sự thật, và không ai biết mình đang học sai.
+- **Thiết kế cứu (cờ ở cấp câu trong tài liệu, dùng chung cho cả lớp):**
+  1. Khi một câu tài liệu bị báo mâu thuẫn, câu đó được gắn cờ "đang chờ xem lại". Nội dung không đổi.
+  2. Mọi phiên chat trích câu đó đều tự hiện nhãn cảnh báo, kể cả khi học viên không thắc mắc.
+  3. Các báo cáo trùng được gộp thành một phiếu cho TA, kèm số lượt. TA không bị spam, và biết mức độ ảnh hưởng.
+  4. Chỉ giảng viên gỡ được cờ: sửa câu, hoặc giữ nguyên kèm giải thích.
+- **Ranh giới quyền:** AI **được** gắn cờ, vì việc này đảo lại được và không đổi nội dung. AI **không được** sửa nội dung. Hai mức này được chốt ở §4.
+- **Lỗi còn lại:** nếu chưa học viên nào hỏi thì chưa có cờ, và câu sai vẫn được trích bình thường. Đưa vào §6 làm giới hạn đã biết.
 
 ## §4. Mức tự chủ  (chặng 4)
 Với mỗi tool:
