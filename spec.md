@@ -78,17 +78,48 @@ Với mỗi kịch bản đắt nhất:
 - 2–3 nguyên tắc HAX/PAIR, mỗi cái trỏ vào một chỗ cụ thể (câu chữ hoặc chỗ trên màn hình).
 - Lỗi nào sửa câu chữ không cứu được (nếu có), và thiết kế cứu nó thế nào.
 
-### Kịch bản 1: Xin giải hết Bài tập 3 đang mở
+### Kịch bản 1: Xin giải hết Bài tập 3 đang mở (③)
 
-- **Nếu AI sai:** AI có thể nói: “Đáp án câu a là …; câu b chọn …” và hiện toàn bộ lời giải ngay trong cuộc trò chuyện. Học viên có thể đã đọc hoặc chép trước khi hệ thống phát hiện lỗi; thu hồi tin nhắn không xóa được điều đã thấy.
-- **Phản hồi dự kiến:** “Bài tập 3 vẫn đang mở nên mình không thể giải hết hoặc xác nhận đáp số. Bạn hãy bắt đầu bằng cách tính trung bình theo §3.1 và tìm trung vị theo §3.2. Với câu b, hãy xem giá trị nào chịu ảnh hưởng nhiều hơn khi có một mức lương cao bất thường. Bạn đã thử bước nào rồi?” Giao diện hiển thị lý do giới hạn, liên kết §3.1 và §3.2, cùng ô để học viên trình bày bước đã làm.
-- **Việc tiếp theo và thông báo:** Học viên có thể trả lời bước đang vướng để nhận gợi ý tiếp mà không lộ đáp số. Nếu hệ thống phát hiện lời giải đã bị lộ, giao diện thông báo ngay rằng câu trả lời trước không phù hợp và dừng các gợi ý chứa đáp án; đồng thời ghi nhận sự cố và gửi giảng viên/TA nội dung liên quan để xem trong giờ trực tiếp theo, từ 08:00 nếu lỗi xảy ra sau 22:00. Không hứa TA đã đọc hay xử lý ngay.
-- **Quyết định:** Chọn **trả lời kèm giới hạn**, rồi hỏi học viên đã làm tới đâu: câu hỏi và trạng thái bài đang mở đã đủ rõ để từ chối lời giải đầy đủ, nhưng vẫn có thể hỗ trợ ngay bằng gợi ý. Chỉ hỏi lại mà không nêu giới hạn dễ khiến học viên chờ một lời giải hoàn chỉnh; dừng và chuyển người ngay khiến học viên phải chờ qua đêm dù có thể tiếp tục tự làm với gợi ý an toàn.
-- **Loại lỗi:** Đây là lỗi **hệ thống** nếu AI hoặc `goi_y_bai_tap` để lộ lời giải bài đang mở; việc học viên xin giúp đỡ sát hạn là ngữ cảnh, không phải lỗi của học viên. Vì vậy thông báo nhận trách nhiệm về câu trả lời và hướng dẫn bước tiếp theo, không trách học viên.
-- **G1 — Làm rõ hệ thống làm được gì** → câu AI nói: “Mình không thể giải hết hoặc xác nhận đáp số” và phần gợi ý cho biết trợ lý có thể giúp học viên tự làm từng bước.
-- **G11 — Giải thích vì sao** → cụm “Bài tập 3 vẫn đang mở nên…” ngay trước lời từ chối giải hết giải thích giới hạn cho học viên.
-- **PAIR — Errors + Graceful Failure** → khi phát hiện lời giải đã lộ, giao diện báo câu trả lời trước không phù hợp, dừng gợi ý chứa đáp án và cho học viên tiếp tục bằng gợi ý an toàn; sự cố được gửi giảng viên/TA để xem xét.
-- **Lỗi câu chữ không cứu được:** Một khi đáp số đã hiện, lời xin lỗi hay xóa tin nhắn không thu hồi được nó. Thiết kế cần kiểm tra trạng thái Bài tập 3 trước khi gọi `goi_y_bai_tap`, giới hạn đầu ra ở gợi ý và kiểm tra đầu ra trước khi hiển thị để chặn lời giải hoặc xác nhận đáp số; nếu đã lộ thì ghi nhận và báo giảng viên/TA như trên.
+**Tình huống:** Học viên hỏi lúc tối muộn: “Giải hết bài 3 cho em với, em sắp đến hạn rồi.” Bài tập 3 vẫn đang mở. Nếu AI đưa toàn bộ lời giải, học viên có thể đã đọc hoặc chép trước khi lỗi được phát hiện.
+
+**1. AI nói gì (nguyên văn)**
+> Bài tập 3 vẫn đang mở nên mình không thể giải hết hoặc xác nhận đáp số. Bạn hãy bắt đầu bằng cách tính trung bình theo §3.1 và tìm trung vị theo §3.2. Với câu b, hãy xem giá trị nào chịu ảnh hưởng nhiều hơn khi có một mức lương cao bất thường. Bạn đã thử bước nào rồi?
+
+**2. Người dùng thấy gì**
+- Lời giải thích giới hạn và các liên kết tới §3.1, §3.2.
+- Ô để trình bày bước đã làm và nhận gợi ý tiếp.
+- Nếu phát hiện lời giải đã lộ, thông báo ngay rằng câu trả lời trước không phù hợp.
+
+**3. Làm gì tiếp**
+- **Học viên:** trả lời bước đang vướng để nhận gợi ý tiếp mà không lộ đáp số.
+- **Hệ thống:** nếu phát hiện lời giải đã lộ, dừng các gợi ý chứa đáp án, ghi nhận sự cố và gửi thông tin liên quan cho TA.
+
+**4. Ai được báo, sau bao lâu**
+| Ai | Nhận gì | Khi nào |
+|---|---|---|
+| Học viên | Thông báo câu trả lời trước không phù hợp và cách tiếp tục bằng gợi ý | Ngay khi phát hiện lời giải đã lộ |
+| TA / giảng viên | Thông tin liên quan đến sự cố để xem xét | Gửi ngay khi phát hiện; xem trong giờ trực tiếp theo, từ 08:00 nếu lỗi xảy ra sau 22:00 |
+
+**5. Quyết định: trả lời kèm giới hạn**
+- **Chọn:** nêu giới hạn, đưa gợi ý và hỏi học viên đã làm tới đâu. Trạng thái bài đang mở đủ rõ để từ chối lời giải đầy đủ, đồng thời vẫn có thể hỗ trợ ngay.
+- **Loại “chỉ hỏi lại”:** không nêu giới hạn có thể khiến học viên chờ một lời giải hoàn chỉnh.
+- **Loại “dừng và chuyển người”:** học viên phải chờ qua đêm dù có thể tiếp tục tự làm với gợi ý an toàn.
+
+**6. Loại lỗi: lỗi hệ thống**
+- AI hoặc `goi_y_bai_tap` để lộ lời giải bài đang mở là lỗi hệ thống. Học viên xin giúp đỡ sát hạn là ngữ cảnh, không phải lỗi của học viên.
+- **Cách nói và sửa:** nhận trách nhiệm về câu trả lời không phù hợp, hướng dẫn bước tiếp theo và xử lý sự cố; không trách học viên.
+
+**7. Nguyên tắc HAX/PAIR**
+| Nguyên tắc | Trỏ vào đâu |
+|---|---|
+| **G1 – Làm rõ hệ thống làm được gì** | Câu “Mình không thể giải hết hoặc xác nhận đáp số” và phần gợi ý cho biết trợ lý có thể giúp học viên tự làm từng bước. |
+| **G11 – Giải thích vì sao** | Cụm “Bài tập 3 vẫn đang mở nên…” ngay trước lời từ chối giải hết giải thích giới hạn cho học viên. |
+| **PAIR – Errors + Graceful Failure** | Thông báo câu trả lời trước không phù hợp và đường tiếp tục bằng gợi ý an toàn khi phát hiện lời giải đã lộ. |
+
+**8. Lỗi sửa câu chữ không cứu được, và thiết kế cứu nó**
+- **Vấn đề:** Một khi đáp số đã hiện, lời xin lỗi hay xóa tin nhắn không thu hồi được điều học viên đã thấy.
+- **Thiết kế cứu:** Kiểm tra trạng thái Bài tập 3 trước khi gọi `goi_y_bai_tap`, giới hạn đầu ra ở gợi ý và kiểm tra đầu ra trước khi hiển thị để chặn lời giải hoặc xác nhận đáp số.
+- **Nếu đã lộ:** ghi nhận sự cố, thông báo cho học viên và báo TA / giảng viên như ở mục 4.
 
 ### Kịch bản 2: "§3.3 nói độ lệch chuẩn luôn nhỏ hơn phương sai…" (④)
 
